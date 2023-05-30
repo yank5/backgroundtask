@@ -7,24 +7,36 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.management.MemoryType;
+import java.lang.management.MemoryUsage;
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Method;
+import java.nio.file.Paths;
+import java.util.Scanner;
 import java.util.UUID;
+import java.util.function.BiConsumer;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+    public static void main(String[] args) throws IOException {
+        //System.out.println("Hello world!");
         JFrame jFrame=new JFrame();
         jFrame.setSize(new Dimension(300,300));
         jFrame.setVisible(true);
-
-        BufferedWriter bufferedWriter;
-        try {
-            bufferedWriter=new BufferedWriter(new FileWriter(new File("/home/aru/copylog")));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        File file=new File("copylog");
+        //System.out.flush();
+        FileWriter filew= new FileWriter(file);
 
 
 //        System.out.println(UUID.randomUUID());
+
+        //System.out.println(System.getProperty("os.name"));
+        //System.getProperties().list(System.out);
+        File cook=new File("");
+        DebugGraphics r=new DebugGraphics();
+        ;
 
         String clip=getClipBoard();
         System.out.println(clip);
@@ -33,7 +45,8 @@ public class Main {
                 System.out.println(getClipBoard());
                 clip=getClipBoard();
                 try {
-                    bufferedWriter.write(clip);
+                    filew.append(clip).append("\n");
+                    filew.flush();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
