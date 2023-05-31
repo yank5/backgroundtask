@@ -35,8 +35,8 @@ public class Main {
         //System.out.println(System.getProperty("os.name"));
         //System.getProperties().list(System.out);
         File cook=new File("");
-        DebugGraphics r=new DebugGraphics();
-        ;
+//        DebugGraphics r=new DebugGraphics();
+
 
         String clip=getClipBoard();
         System.out.println(clip);
